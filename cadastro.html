@@ -14,6 +14,9 @@
       defer
       src="https://use.fontawesome.com/releases/v5.15.4/js/all.js"
     ></script>
+    <!--app.js-->
+    <script src="./app.js"></script>
+
     <link rel="stylesheet" href="" />
     <title>Orçamento pessoal</title>
   </head>
@@ -59,31 +62,31 @@
           <h1 class="display-4">Registro de nova despesa</h1>
         </div>
 
-        <!--meses-->
         <div class="row mb-2">
-          <div class="col-md-2">
-            <select class="form-control" name="" id="mes">
-              <option value="">Mês</option>
-              <option value="">Janeiro</option>
-              <option value="">Fevereiro</option>
-              <option value="">Março</option>
-              <option value="">Abril</option>
-              <option value="">Maio</option>
-              <option value="">Junho</option>
-              <option value="">Julho</option>
-              <option value="">Agosto</option>
-              <option value="">Setembro</option>
-              <option value="">Outrubro</option>
-              <option value="">Novembro</option>
-              <option value="">Dezembro</option>
-            </select>
-          </div>
-
           <!--anos-->
           <div class="col-md-2">
             <select class="form-control" name="" id="ano">
               <option value="">Ano</option>
-              <option value="">2022</option>
+              <option value="2022">2022</option>
+            </select>
+          </div>
+
+          <!--meses-->
+          <div class="col-md-2">
+            <select class="form-control" name="" id="mes">
+              <option value="">Mês</option>
+              <option value="Janeiro">Janeiro</option>
+              <option value="Fevereiro">Fevereiro</option>
+              <option value="Março">Março</option>
+              <option value="Abril">Abril</option>
+              <option value="Maio">Maio</option>
+              <option value="Junho">Junho</option>
+              <option value="Julho">Julho</option>
+              <option value="Agosto">Agosto</option>
+              <option value="Setembro">Setembro</option>
+              <option value="outubro">Outrubro</option>
+              <option value="Novembro">Novembro</option>
+              <option value="Dezembro">Dezembro</option>
             </select>
           </div>
 
@@ -136,7 +139,7 @@
             <button
               type="button"
               class="btn btn-primary"
-              onclick="cadatrarDespesa()"
+              onclick="cadastrarDespesa()"
             >
               <i class="fas fa-plus"></i>
             </button>
