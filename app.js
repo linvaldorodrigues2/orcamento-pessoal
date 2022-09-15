@@ -9,6 +9,10 @@ class Despesa {
   }
 }
 
+class bd {
+
+}
+
 function cadastrarDespesa() {
   let ano = document.getElementById("ano");
   let mes = document.getElementById("mes");
@@ -26,5 +30,10 @@ function cadastrarDespesa() {
     valor.value
   );
 
+  gravar(despesa)
   console.log(despesa);
+}
+
+function gravar(despesa){
+  localStorage.setItem('despesa', JSON.stringify(despesa))
 }
