@@ -7,6 +7,16 @@ class Despesa {
     this.descricao = descricao;
     this.valor = valor;
   }
+
+  validarDados() {
+    for (let i in this) {
+      if (this[i] == undefined || this[i] == "" || this[i] == null) {
+        return false;
+      }
+
+      return true;
+    }
+  }
 }
 
 class BancoDeDados {
@@ -49,5 +59,10 @@ function cadastrarDespesa() {
     valor.value
   );
 
-  Bd.gravar(despesa);
+  if (despesa.validarDados()) {
+    Bd.gravar(despesa);
+    $("#sucessoCadastro").modal("show");
+  } else {
+    $("#erroCadastro").modal("show");
+  }
 }
