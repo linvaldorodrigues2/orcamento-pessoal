@@ -9,9 +9,28 @@ class Despesa {
   }
 }
 
-class bd {
+class BancoDeDados {
+  constructor() {
+    let id = localStorage.getItem("id");
 
+    if (id === null) {
+      localStorage.setItem("id", 0);
+    }
+  }
+
+  getProximoId() {
+    let proximoId = localStorage.getItem("id");
+    return parseInt(proximoId) + 1;
+  }
+
+  gravar(despesa) {
+    let id = this.getProximoId();
+    localStorage.setItem(id, JSON.stringify(despesa));
+    localStorage.setItem("id", id);
+  }
 }
+
+let Bd = new BancoDeDados();
 
 function cadastrarDespesa() {
   let ano = document.getElementById("ano");
@@ -30,10 +49,5 @@ function cadastrarDespesa() {
     valor.value
   );
 
-  gravar(despesa)
-  console.log(despesa);
-}
-
-function gravar(despesa){
-  localStorage.setItem('despesa', JSON.stringify(despesa))
+  Bd.gravar(despesa);
 }
