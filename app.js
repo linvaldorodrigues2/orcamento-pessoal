@@ -98,6 +98,13 @@ function cadastrarDespesa() {
     document.getElementById("modal_button").className = "btn btn-danger";
 
     $("#modalRegistroDespesa").modal("show");
+    
+    ano.value = ''
+    mes.value = ''
+    dia.value = ''
+    tipo.value = ''
+    descricao.value= ''
+    valor.value = ''
   }
 }
 
