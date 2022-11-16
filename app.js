@@ -10,17 +10,20 @@ class Despesa {
 
   validarDados() {
     for (let i in this) {
+      /*recupera o valor do atributo utilizando uma notação array,
+      é de forma anologa à utilizar o operador .( ponto ) -> this.ano */
       if (this[i] == undefined || this[i] == "" || this[i] == null) {
         return false;
       }
-
-      return true;
+      //pode ser usado para todas as notações de construção de um objeto.
     }
+    return true;
   }
 }
 
 class BancoDeDados {
   constructor() {
+    //recupera o id existente caso tenha
     let id = localStorage.getItem("id");
 
     if (id === null) {
@@ -29,23 +32,35 @@ class BancoDeDados {
   }
 
   getProximoId() {
+    //recupera o ultimo id em localStorade e soma +1
     let proximoId = localStorage.getItem("id");
     return parseInt(proximoId) + 1;
   }
 
   gravar(despesa) {
     let id = this.getProximoId();
+    //adiciona o valor id e o obj. em localStorage
     localStorage.setItem(id, JSON.stringify(despesa));
-    localStorage.setItem("id", id);
+    /*
+      1° param -> id.. do objeto que sera armazenado
+      2° param -> O dados do objeto que sera armazenado
+      em localStorage precisam ser encaminhados atraves
+      de notação JSON -> JSON.stringyfy -> faz essa conversão
+    */
+
+      //atualiza o valor 'id' em localStorage
+    localStorage.setItem("id", id); 
   }
 
   recuperarRegistros() {
     let despesas = Array();
 
+    //recupera todos as despesas -> localStorage
     let id = localStorage.getItem("id");
 
     for (let i = 1; i <= id; i++) {
       let despesa = JSON.parse(localStorage.getItem(i));
+      //se houver indice mudados / removidos
       if (despesa === null) {
         continue;
       }
@@ -62,25 +77,48 @@ class BancoDeDados {
     console.log(despesa);
     console.log(despesasFiltradas);
 
+    /*
+    O .filter() não atua sobre o array original, para atulizar o valor
+    do array original, é preciso atribuir o resultado do filtro ao array
+    original
+    */
+
+    //ano
     if (despesa.ano != "") {
       despesasFiltradas = despesasFiltradas.filter((d) => d.ano == despesa.ano);
     }
+    /*
+    despesasFiltradas = despesasFiltradas.filter(
+      function(d){
+        return d.ano == despesa.ano
+      }
+    )
+    */
+
+    //mes
     if (despesa.mes != "") {
       despesasFiltradas = despesasFiltradas.filter((d) => d.mes == despesa.mes);
     }
+
+    //dia
     if (despesa.dia != "") {
       despesasFiltradas = despesasFiltradas.filter((d) => d.dia == despesa.dia);
     }
+    //tipo
     if (despesa.tipo != "") {
       despesasFiltradas = despesasFiltradas.filter(
         (d) => d.tipo == despesa.tipo
       );
     }
+
+    //descricao
     if (despesa.descricao != "") {
       despesasFiltradas = despesasFiltradas.filter(
         (d) => d.descricao == despesa.descricao
       );
     }
+    
+    //valor
     if (despesa.valor != "") {
       despesasFiltradas = despesasFiltradas.filter(
         (d) => d.valor == despesa.valor
@@ -113,6 +151,7 @@ function cadastrarDespesa() {
   if (despesa.validarDados()) {
     Bd.gravar(despesa);
 
+    //alert -> sucesso
     document.getElementById("modal_titulo").innerHTML =
       "Cadastro inserido com sucesso";
     document.getElementById("modal_titulo_div").className =
@@ -123,7 +162,17 @@ function cadastrarDespesa() {
     document.getElementById("modal_button").className = "btn btn-success";
 
     $("#modalRegistroDespesa").modal("show");
+    /*recurso Jquery -> exibi a caixa modal dentro da aplicação*/
+
+    //limpa os campos após o cadastro
+    ano.value = "";
+    mes.value = "";
+    dia.value = "";
+    tipo.value = "";
+    descricao.value = "";
+    valor.value = "";
   } else {
+    //alert -> erro
     document.getElementById("modal_titulo").innerHTML = "Erro!";
     document.getElementById("modal_titulo_div").className =
       "modal-header text-danger";
@@ -133,13 +182,7 @@ function cadastrarDespesa() {
     document.getElementById("modal_button").className = "btn btn-danger";
 
     $("#modalRegistroDespesa").modal("show");
-
-    ano.value = "";
-    mes.value = "";
-    dia.value = "";
-    tipo.value = "";
-    descricao.value = "";
-    valor.value = "";
+    //recurso Jquery
   }
 }
 
@@ -150,10 +193,16 @@ function carregaListaDespesas(despesas = Array(), filtro = false) {
 
   let listaDespesas = document.getElementById("listaDespesas");
   listaDespesas.innerHTML = "";
+  
+  //percorre o array e lista cada despesa
   despesas.forEach(function (d) {
+    //cria as linha
     let linha = listaDespesas.insertRow();
+
+    //cria a coluna
     linha.insertCell(0).innerHTML = `${d.dia} / ${d.mes} / ${d.ano}`;
 
+    //ajuste do tipo de despesa
     switch (d.tipo) {
       case "1":
         d.tipo = "Alimentação";
