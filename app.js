@@ -76,6 +76,7 @@ class BancoDeDados {
 
     console.log(despesa);
     console.log(despesasFiltradas);
+<<<<<<< HEAD
 
     /*
     O .filter() não atua sobre o array original, para atulizar o valor
@@ -105,20 +106,41 @@ class BancoDeDados {
       despesasFiltradas = despesasFiltradas.filter((d) => d.dia == despesa.dia);
     }
     //tipo
+=======
+    
+    if(despesa.ano != ""){
+      despesasFiltradas = despesasFiltradas.filter(
+        (d)=> d.ano == despesa.ano)
+    }
+    if (despesa.mes != "") {
+      despesasFiltradas = despesasFiltradas.filter(
+        (d) => d.mes == despesa.mes);
+    }
+    if (despesa.dia != "") {
+      despesasFiltradas = despesasFiltradas.filter(
+        (d) => d.dia == despesa.dia);
+    }
+>>>>>>> 9b1063ebeb4f6f55b6e55e5f39b8ae4f475ba28f
     if (despesa.tipo != "") {
       despesasFiltradas = despesasFiltradas.filter(
         (d) => d.tipo == despesa.tipo
       );
     }
+<<<<<<< HEAD
 
     //descricao
+=======
+>>>>>>> 9b1063ebeb4f6f55b6e55e5f39b8ae4f475ba28f
     if (despesa.descricao != "") {
       despesasFiltradas = despesasFiltradas.filter(
         (d) => d.descricao == despesa.descricao
       );
     }
+<<<<<<< HEAD
     
     //valor
+=======
+>>>>>>> 9b1063ebeb4f6f55b6e55e5f39b8ae4f475ba28f
     if (despesa.valor != "") {
       despesasFiltradas = despesasFiltradas.filter(
         (d) => d.valor == despesa.valor
@@ -187,16 +209,26 @@ function cadastrarDespesa() {
 }
 
 function carregaListaDespesas(despesas = Array(), filtro = false) {
+<<<<<<< HEAD
   if (despesas.length == 0 && filtro == false) {
+=======
+  if(despesas.length == 0 && filtro == false){
+>>>>>>> 9b1063ebeb4f6f55b6e55e5f39b8ae4f475ba28f
     despesas = Bd.recuperarRegistros();
   }
 
   let listaDespesas = document.getElementById("listaDespesas");
+<<<<<<< HEAD
   listaDespesas.innerHTML = "";
   
   //percorre o array e lista cada despesa
   despesas.forEach(function (d) {
     //cria as linha
+=======
+  listaDespesas.innerHTML = ''
+   despesas.forEach(function (d) {
+
+>>>>>>> 9b1063ebeb4f6f55b6e55e5f39b8ae4f475ba28f
     let linha = listaDespesas.insertRow();
 
     //cria a coluna
@@ -227,6 +259,7 @@ function carregaListaDespesas(despesas = Array(), filtro = false) {
   });
 }
 
+<<<<<<< HEAD
 function pesquisaDespesa() {
   let ano = document.getElementById("ano").value;
   let mes = document.getElementById("mes").value;
@@ -241,3 +274,19 @@ function pesquisaDespesa() {
 
   this.carregaListaDespesas(despesas, true);
 }
+=======
+function pesquisaDespesa(){
+  let ano = document.getElementById('ano').value
+  let mes = document.getElementById('mes').value
+  let dia = document.getElementById('dia').value
+  let tipo = document.getElementById('tipo').value
+  let descricao = document.getElementById('descricao').value
+  let valor = document.getElementById('valor').value
+
+  let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
+
+  let despesas = Bd.pesquisar(despesa)
+
+  this.carregaListaDespesas(despesas, true)
+}
+>>>>>>> 9b1063ebeb4f6f55b6e55e5f39b8ae4f475ba28f
