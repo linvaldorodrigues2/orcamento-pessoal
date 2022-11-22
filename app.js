@@ -76,6 +76,10 @@ class BancoDeDados {
 
     console.log(despesa);
     console.log(despesasFiltradas);
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 96b79741b7ad4f04499addf9e815336b32eabe20
 
     /*
     O .filter() não atua sobre o array original, para atulizar o valor
@@ -105,20 +109,54 @@ class BancoDeDados {
       despesasFiltradas = despesasFiltradas.filter((d) => d.dia == despesa.dia);
     }
     //tipo
+<<<<<<< HEAD
+=======
+=======
+    
+    if(despesa.ano != ""){
+      despesasFiltradas = despesasFiltradas.filter(
+        (d)=> d.ano == despesa.ano)
+    }
+    if (despesa.mes != "") {
+      despesasFiltradas = despesasFiltradas.filter(
+        (d) => d.mes == despesa.mes);
+    }
+    if (despesa.dia != "") {
+      despesasFiltradas = despesasFiltradas.filter(
+        (d) => d.dia == despesa.dia);
+    }
+>>>>>>> 9b1063ebeb4f6f55b6e55e5f39b8ae4f475ba28f
+>>>>>>> 96b79741b7ad4f04499addf9e815336b32eabe20
     if (despesa.tipo != "") {
       despesasFiltradas = despesasFiltradas.filter(
         (d) => d.tipo == despesa.tipo
       );
     }
+<<<<<<< HEAD
 
     //descricao
+=======
+<<<<<<< HEAD
+
+    //descricao
+=======
+>>>>>>> 9b1063ebeb4f6f55b6e55e5f39b8ae4f475ba28f
+>>>>>>> 96b79741b7ad4f04499addf9e815336b32eabe20
     if (despesa.descricao != "") {
       despesasFiltradas = despesasFiltradas.filter(
         (d) => d.descricao == despesa.descricao
       );
     }
+<<<<<<< HEAD
     
     //valor
+=======
+<<<<<<< HEAD
+    
+    //valor
+=======
+>>>>>>> 9b1063ebeb4f6f55b6e55e5f39b8ae4f475ba28f
+>>>>>>> 96b79741b7ad4f04499addf9e815336b32eabe20
     if (despesa.valor != "") {
       despesasFiltradas = despesasFiltradas.filter(
         (d) => d.valor == despesa.valor
@@ -187,16 +225,36 @@ function cadastrarDespesa() {
 }
 
 function carregaListaDespesas(despesas = Array(), filtro = false) {
+<<<<<<< HEAD
   if (despesas.length == 0 && filtro == false) {
+=======
+<<<<<<< HEAD
+  if (despesas.length == 0 && filtro == false) {
+=======
+  if(despesas.length == 0 && filtro == false){
+>>>>>>> 9b1063ebeb4f6f55b6e55e5f39b8ae4f475ba28f
+>>>>>>> 96b79741b7ad4f04499addf9e815336b32eabe20
     despesas = Bd.recuperarRegistros();
   }
 
   let listaDespesas = document.getElementById("listaDespesas");
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 96b79741b7ad4f04499addf9e815336b32eabe20
   listaDespesas.innerHTML = "";
   
   //percorre o array e lista cada despesa
   despesas.forEach(function (d) {
     //cria as linha
+<<<<<<< HEAD
+=======
+=======
+  listaDespesas.innerHTML = ''
+   despesas.forEach(function (d) {
+
+>>>>>>> 9b1063ebeb4f6f55b6e55e5f39b8ae4f475ba28f
+>>>>>>> 96b79741b7ad4f04499addf9e815336b32eabe20
     let linha = listaDespesas.insertRow();
 
     //cria a coluna
@@ -227,6 +285,10 @@ function carregaListaDespesas(despesas = Array(), filtro = false) {
   });
 }
 
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+>>>>>>> 96b79741b7ad4f04499addf9e815336b32eabe20
 function pesquisaDespesa() {
   let ano = document.getElementById("ano").value;
   let mes = document.getElementById("mes").value;
@@ -241,3 +303,22 @@ function pesquisaDespesa() {
 
   this.carregaListaDespesas(despesas, true);
 }
+<<<<<<< HEAD
+=======
+=======
+function pesquisaDespesa(){
+  let ano = document.getElementById('ano').value
+  let mes = document.getElementById('mes').value
+  let dia = document.getElementById('dia').value
+  let tipo = document.getElementById('tipo').value
+  let descricao = document.getElementById('descricao').value
+  let valor = document.getElementById('valor').value
+
+  let despesa = new Despesa(ano, mes, dia, tipo, descricao, valor)
+
+  let despesas = Bd.pesquisar(despesa)
+
+  this.carregaListaDespesas(despesas, true)
+}
+>>>>>>> 9b1063ebeb4f6f55b6e55e5f39b8ae4f475ba28f
+>>>>>>> 96b79741b7ad4f04499addf9e815336b32eabe20
