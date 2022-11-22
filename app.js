@@ -67,6 +67,7 @@ class BancoDeDados {
       despesas.push(despesa);
     }
 
+    console.log(despesas)
     return despesas;
   }
 
@@ -75,7 +76,7 @@ class BancoDeDados {
     despesasFiltradas = this.recuperarRegistros();
 
     console.log(despesa);
-    console.log(despesasFiltradas);
+    
 
     /*
     O .filter() não atua sobre o array original, para atulizar o valor
@@ -133,8 +134,10 @@ class BancoDeDados {
         (d) => d.valor == despesa.valor
       );
     }
-
+    
+    console.log(despesasFiltradas);
     return despesasFiltradas;
+    
   }
 }
 
